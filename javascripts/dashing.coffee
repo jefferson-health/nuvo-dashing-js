@@ -1,6 +1,5 @@
 #= require jquery
 #= require es5-shim
-#= require eventsource
 #= require batman
 #= require batman.jquery
 
@@ -41,20 +40,25 @@ class Dashing.Widget extends Batman.View
     @mixin($(@node).data())
     Dashing.widgets[@id] ||= []
     Dashing.widgets[@id].push(@)
-    @mixin(Dashing.lastEvents[@id]) # in case the events from the server came before the widget was rendered
 
     type = Batman.Filters.dashize(@view)
     $(@node).addClass("widget widget-#{type} #{@id}")
 
   @accessor 'updatedAtMessage', ->
     if updatedAt = @get('updatedAt')
-      timestamp = new Date(updatedAt)
+      timestamp = new Date(updatedAt * 1000)
       hours = timestamp.getHours()
       minutes = ("0" + timestamp.getMinutes()).slice(-2)
       "Last updated at #{hours}:#{minutes}"
 
   @::on 'ready', ->
     Dashing.Widget.fire 'ready'
+
+    # In case the events from the server came before the widget was rendered
+    lastData = Dashing.lastEvents[@id]
+    if lastData
+      @mixin(lastData)
+      @onData(lastData)
 
   receiveData: (data) =>
     @mixin(data)
@@ -110,8 +114,8 @@ source.addEventListener 'message', (e) ->
   if lastEvents[data.id]?.updatedAt != data.updatedAt
     if Dashing.debugMode
       console.log("Received data for #{data.id}", data)
+    lastEvents[data.id] = data
     if widgets[data.id]?.length > 0
-      lastEvents[data.id] = data
       for widget in widgets[data.id]
         widget.receiveData(data)
 

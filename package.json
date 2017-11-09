@@ -14,7 +14,7 @@
     "express": "~4.12.4",
     "express-ejs-layouts": "~1.1.0",
     "fs-extra": "~0.18.4",
-    "jade": "~0.35.0",
+    "pug": "~2.0.0-rc.4",
     "mincer": "~1.2.4",
     "node-sass": "~4.6.0",
     "node-schedule": "~0.2.8",
@@ -39,7 +39,7 @@
     "dashboard",
     "web"
   ],
-  "repository": "git://github.com/jonnochoo/nuvo-dashing-js",
+  "repository": "git://github.com/jefferson-health/nuvo-dashing-js",
   "main": "index",
   "bin": {
     "dashing-js": "./bin/dashing-js"
