@@ -128,3 +128,50 @@ source.addEventListener 'dashboards', (e) ->
 
 $(document).ready ->
   Dashing.run()
+
+
+
+
+
+//router.post('/login', passport.authenticate()(req, res) => {
+    /*console.log('posting..')
+    var campusKey = req.body.campusKey
+    var password = req.body.password
+    optns.usernameField = campusKey
+    optns.passwordField = password
+    console.log('set.')
+        
+    router.use(passport.initialize())
+
+    passport.authenticate('ldapauth', {session: false})
+    console.log('after authentication..')
+    res.send('logged in')*/
+//})
+/*router.post('/login', (req, res) => {
+	console.log('req body: ', req.body)
+	var campusKey = req.body.campusKey
+	var password = req.body.password
+    var callback = (error, info) => {
+        if (!error){
+            var secondcallback = (err, data)=> {
+            if(!err) {
+                console.log('success: ' , data)
+                req.session.user = {
+                    username: campusKey,
+                    password: password,
+                    permissions: [ 'authorized:*' ]
+                }
+                aws_job.refresh()
+                res.redirect('/')
+            } else {
+                console.log('failed to login....redirecting to public page')
+                res.redirect('login_failed')
+            }
+        }
+        aus_job.authorizeUser(campusKey, callback)
+        } else {
+            console.log('Failed to authenticate user. Make sure entered credentials are correct and you are on the Jefferson Network')
+        }
+    }
+    aus_job.authenticateUser(campusKey, password, callback)
+})*/
