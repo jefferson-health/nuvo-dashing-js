@@ -1,6 +1,7 @@
 var path = require('path')
   , assert = require('assert')
   , Mincer = require('mincer');
+ Mincer.Template.libs.coffee = require('coffeescript');
 
 describe('Mincer', function() {
   var templateProjectPath = path.resolve(__dirname, '../templates/project');

@@ -8,10 +8,11 @@ Batman.Filters.prettyNumber = (num) ->
   num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") unless isNaN(num)
 
 Batman.Filters.dashize = (str) ->
-  dashes_rx1 = /([A-Z]+)([A-Z][a-z])/g;
-  dashes_rx2 = /([a-z\d])([A-Z])/g;
+  dashes_rx1 = /([A-Z]+)([A-Z][a-z])/g
+  dashes_rx2 = /([a-z\d])([A-Z])/g
 
-  return str.replace(dashes_rx1, '$1_$2').replace(dashes_rx2, '$1_$2').replace(/_/g, '-').toLowerCase()
+  return str.replace(dashes_rx1, '$1_$2').replace(dashes_rx2, '$1_$2')
+    .replace(/_/g, '-').toLowerCase()
 
 Batman.Filters.shortenedNumber = (num) ->
   return num if isNaN(num)
@@ -29,7 +30,7 @@ class window.Dashing extends Batman.App
     window.location.reload(true)
 
   @root ->
-Dashing.params = Batman.URI.paramsFromQuery(window.location.search.slice(1));
+Dashing.params = Batman.URI.paramsFromQuery(window.location.search.slice(1))
 
 class Dashing.Widget extends Batman.View
   constructor:  ->
