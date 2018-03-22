@@ -6,3 +6,4 @@
 *.swo
 node_modules/
 nuvo-dashing-js*tgz
+.idea
